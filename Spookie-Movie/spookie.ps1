@@ -1,16 +1,10 @@
-﻿# Set the target time (11:59 PM)
-$targetTime = Get-Date -Hour 23 -Minute 59 -Second 0
+﻿$targetTime = Get-Date -Hour 15 -Minute 57 -Second 0
+while ((Get-Date) -lt $targetTime) {
+    # Wait for the desired time
+    Start-Sleep -Seconds 1
+}
 
-# Calculate the time to wait in seconds
-$waitTime = ($targetTime - (Get-Date)).TotalSeconds
+$videoUrl = "https://youtu.be/EFf3QPezrLw"
+Start-Process $videoUrl
 
-# Wait until the target time
-Start-Sleep -Seconds $waitTime
 
-# Set the volume to 50%
-$k=[Math]::Ceiling(100/2);$o=New-Object -ComObject WScript.Shell;for($i = 0;$i -lt $k;$i++){$o.SendKeys([char] 175)}
-
-# Start Chrome in fullscreen
-$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-$chromeArgs = "--start-fullscreen https://pluto.tv/en/on-demand/movies/61e9f621afe81f001a25b4d2"
-Start-Process -FilePath $chromePath -ArgumentList $chromeArgs
