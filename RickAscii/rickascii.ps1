@@ -268,7 +268,7 @@ function SpawnNotepadWithRandomRickroll {
         $TempFile = [System.IO.Path]::GetTempFileName()
         Set-Content -Path $TempFile -Value $RandomRickAstleyAscii
         Start-Process "notepad.exe" -ArgumentList "$TempFile"
-        Start-Sleep -Milliseconds 100  # Time interval between spawning Notepad windows (adjust as needed)
+        Start-Sleep -Milliseconds 200  # Time interval between spawning Notepad windows (adjust as needed)
     }
 }
 
