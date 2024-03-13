@@ -262,15 +262,15 @@ ttttt1tttttttt11tttttttt111,..........,,,,.....,:,,.......................:11111
 
 $RickAstleyAsciiArray = @($RickAstleyAscii1, $RickAstleyAscii2, $RickAstleyAscii3, $RickAstleyAscii4, $RickAstleyAsciiText)
 
-function SpawnNotepadWithRandomRickroll {
+function SpawnConsoleRickroll {
     while ($true) {
+        Clear-Host  # Clears the PowerShell console window
         $RandomRickAstleyAscii = $RickAstleyAsciiArray | Get-Random
-        $TempFile = [System.IO.Path]::GetTempFileName()
-        Set-Content -Path $TempFile -Value $RandomRickAstleyAscii
-        Start-Process "notepad.exe" -ArgumentList "$TempFile"
-        Start-Sleep -Milliseconds 500  # Time interval between spawning Notepad windows (adjust as needed)
+        Write-Host $RandomRickAstleyAscii -ForegroundColor Green  # Display ASCII art, feel free to change the color
+        Start-Sleep -Seconds 2  # Adjust the display time for each ASCII art piece as needed
     }
 }
 
-# Run the Rickroll Notepad prank
-SpawnNotepadWithRandomRickroll
+# Run the Rickroll in the PowerShell console
+SpawnConsoleRickroll
+
