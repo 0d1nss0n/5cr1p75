@@ -267,7 +267,7 @@ function SpawnConsoleRickroll {
         Clear-Host  # Clears the PowerShell console window
         $RandomRickAstleyAscii = $RickAstleyAsciiArray | Get-Random
         Write-Host $RandomRickAstleyAscii -ForegroundColor Green  # Display ASCII art, feel free to change the color
-        Start-Sleep -Seconds 2  # Adjust the display time for each ASCII art piece as needed
+        Start-Sleep -Milliseconds 500 # Adjust the display time for each ASCII art piece as needed
     }
 }
 
