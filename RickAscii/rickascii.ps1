@@ -263,37 +263,14 @@ ttttt1tttttttt11tttttttt111,..........,,,,.....,:,,.......................:11111
 $RickAstleyAsciiArray = @($RickAstleyAscii1, $RickAstleyAscii2, $RickAstleyAscii3, $RickAstleyAscii4, $RickAstleyAsciiText)
 
 function SpawnNotepadWithRandomRickroll {
-    Add-Type @"
-        using System;
-        using System.Runtime.InteropServices;
-        public class WinApi {
-            [DllImport("user32.dll", EntryPoint = "FindWindow")]
-            public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-        }
-"@
-
     while ($true) {
         $RandomRickAstleyAscii = $RickAstleyAsciiArray | Get-Random
         $TempFile = [System.IO.Path]::GetTempFileName()
         Set-Content -Path $TempFile -Value $RandomRickAstleyAscii
-        $process = Start-Process "notepad.exe" -ArgumentList "$TempFile" -PassThru
-        Start-Sleep -Seconds 2  # Wait for Notepad to load
-        
-        # Corrected line
-        $notepadHandle = [WinApi]::FindWindow([System.String]::Empty, $process.MainWindowTitle)
-        if ($notepadHandle -ne [IntPtr]::Zero) {
-            [WinApi]::ShowWindow($notepadHandle, 3) # SW_MAXIMIZE is 3
-        }
-
+        Start-Process "notepad.exe" -ArgumentList "$TempFile"
         Start-Sleep -Milliseconds 500  # Time interval between spawning Notepad windows (adjust as needed)
     }
 }
 
 # Run the Rickroll Notepad prank
 SpawnNotepadWithRandomRickroll
-
-
