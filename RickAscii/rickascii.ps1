@@ -283,7 +283,8 @@ function SpawnNotepadWithRandomRickroll {
         $process = Start-Process "notepad.exe" -ArgumentList "$TempFile" -PassThru
         Start-Sleep -Seconds 2  # Wait for Notepad to load
         
-        $notepadHandle = [WinApi]::FindWindow(null, $process.MainWindowTitle)
+        # Corrected line
+        $notepadHandle = [WinApi]::FindWindow([System.String]::Empty, $process.MainWindowTitle)
         if ($notepadHandle -ne [IntPtr]::Zero) {
             [WinApi]::ShowWindow($notepadHandle, 3) # SW_MAXIMIZE is 3
         }
@@ -294,4 +295,5 @@ function SpawnNotepadWithRandomRickroll {
 
 # Run the Rickroll Notepad prank
 SpawnNotepadWithRandomRickroll
+
 
