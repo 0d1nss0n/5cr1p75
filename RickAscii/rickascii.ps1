@@ -1,6 +1,6 @@
 ﻿# Maximum's Rickroll Notepad Prank PowerShell Script
 # This script will spawn Notepad and display an ASCII art of Rick Astley.
-
+ 
 $RickAstleyAscii1 = @"
 
 tttftttttttttttttttttffftttt1111111tt1111tt11111111tttt1ttt11tttt111111tttttttttttttttttttt1111111tt
