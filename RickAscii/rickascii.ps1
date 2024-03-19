@@ -1,5 +1,5 @@
-﻿# 0d1nss0n's Rickroll Notepad Prank PowerShell Script  
-# This script will spawn Notepad and display an ASCII art of Rick Astley.
+# 0d1nssn0n's Rickroll Powershell Prank Script  
+# This script will spawn Powershell and display an ASCII art of Rick Astley.
   
 $RickAstleyAscii1 = @"
 
